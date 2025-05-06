@@ -4,7 +4,7 @@ from PIL import Image
 import os
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-resnet = torch.load('train/resnet50_feature_extractor.pth', map_location=device)
+resnet = torch.load('train/resnet50_feature_extractor.pth', map_location=device, weights_only=False)
 resnet.to(device)
 
 #transform ảnh đầu vào
