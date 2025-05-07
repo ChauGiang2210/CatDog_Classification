@@ -37,9 +37,9 @@ This project uses the ResNet50 model for feature extraction and SVM (Support Vec
    ```
 
 
-### 🎮 Running the Application with Streamlit Interface
+### 🎮 Running the Application in Localhost
 ```bash
-streamlit run app.py
+flask run
 ```
 Then open your browser to `http://localhost:8501`
 
