@@ -4,6 +4,8 @@ import joblib
 import os
 from werkzeug.utils import secure_filename
 import numpy as np
+from io import BytesIO
+from PIL import Image
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './temp'
@@ -14,17 +16,16 @@ svm_model = joblib.load('train/model.pkl')
 def home():
     if request.method == "POST":
         try:
-            if "image" not in request.files or request.files["image"].filename == "":
+            img_file = request.files["image"]
+            if img_file.filename == "":
                 return render_template("index.html", error="Chưa chọn ảnh")
 
-            img_file = request.files["image"]
-            img_filename = secure_filename(img_file.filename)
-            temp_path = os.path.join(app.config['UPLOAD_FOLDER'], img_filename)
-            img_file.save(temp_path)
+            # Đọc ảnh trực tiếp từ bộ nhớ
+            img = Image.open(BytesIO(img_file.read()))
 
-            features = Feature_Extraction_img(temp_path)
+            # Trích xuất đặc trưng từ ảnh (không cần lưu file)
+            features = Feature_Extraction_img(img)
             prediction = svm_model.predict(features)
-            os.remove(temp_path)
             return render_template("index.html", prediction=int(prediction[0]))
         except Exception as e:
             return render_template("index.html", error="Lỗi hệ thống: " + str(e))
