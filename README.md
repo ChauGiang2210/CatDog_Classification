@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cat & Dog classification with Resnet50 and SVM
 
 This project uses the ResNet50 model for feature extraction and SVM (Support Vector Machine) for classification to distinguish between cat and dog images. The application is built with Flask and deployed on Render, offering a web interface where users can upload images and receive classification results.
@@ -36,9 +37,9 @@ This project uses the ResNet50 model for feature extraction and SVM (Support Vec
    ```
 
 
-### 🎮 Running the Application with Streamlit Interface
+### 🎮 Running the Application in Localhost
 ```bash
-streamlit run app.py
+flask run
 ```
 Then open your browser to `http://localhost:8501`
 
@@ -50,3 +51,5 @@ Then open your browser to `http://localhost:8501`
 
 1. **Upload PDF**: Use the file uploader in the Streamlit interface
 2. **Ask Questions**: Start chatting with your PDF through the chat interface"# Ollama_PDF_Chatbot" 
+
+
